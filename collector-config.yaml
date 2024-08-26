@@ -1,0 +1,39 @@
+# To limit exposure to denial of service attacks, change the host in endpoints below from 0.0.0.0 to a specific network interface.
+# See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks
+
+receivers:
+  otlp:
+    protocols:
+      http:
+      grpc:
+  zipkin:
+    endpoint: 0.0.0.0:9411
+
+exporters:
+  zipkin:
+    endpoint: "http://0.0.0.0:9413/api/v2/spans"
+  debug:
+    verbosity: detailed
+  prometheus:
+    endpoint: 0.0.0.0:9412
+    send_timestamps: true
+processors:
+  batch:
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp, zipkin]
+      processors: [batch]
+      exporters: [zipkin, debug]
+
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheus]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
+
