@@ -7,8 +7,6 @@
             </pattern>
         </encoder>
     </appender>
-    <appender name="file" class="ch.qos.logback.core.File">
-    </appender>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>logs/order-service.log</file>
         <encoder>

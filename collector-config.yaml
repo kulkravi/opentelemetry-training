@@ -5,7 +5,9 @@ receivers:
   otlp:
     protocols:
       http:
+        endpoint: localhost:4318
       grpc:
+        endpoint: localhost:4317
   zipkin:
     endpoint: 0.0.0.0:9411
 
@@ -24,16 +26,16 @@ service:
   pipelines:
     traces:
       receivers: [otlp, zipkin]
-      processors: [batch]
+      # processors: [batch]
       exporters: [zipkin, debug]
 
     metrics:
       receivers: [otlp]
-      processors: [batch]
+      # processors: [batch]
       exporters: [prometheus]
 
     logs:
       receivers: [otlp]
-      processors: [batch]
+      # processors: [batch]
       exporters: [debug]
 
