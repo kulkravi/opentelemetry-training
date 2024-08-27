@@ -22,4 +22,4 @@ scrape_configs:
       - targets: ["localhost:9090"]
   - job_name: "otel_exporter"
     static_configs:
-      - targets: ["host.docker.internal:9412"]
+      - targets: ["172.17.0.1:9412"]

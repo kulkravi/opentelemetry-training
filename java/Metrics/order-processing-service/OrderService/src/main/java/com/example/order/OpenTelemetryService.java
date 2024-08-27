@@ -53,6 +53,8 @@ public class OpenTelemetryService {
             .setMeterProvider(sdkMeterProvider)
             .build();
 
+        Runtime.getRuntime().addShutdownHook(new Thread(sdk::close));
+
         return sdk;
     }
 }
