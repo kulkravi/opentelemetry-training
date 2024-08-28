@@ -46,8 +46,8 @@ public class OrderController {
     public synchronized Order createOrder(@RequestBody Order order) {
         final Span currentSpan = tracer.spanBuilder("Add Order").startSpan();
         Scope scope = currentSpan.makeCurrent();
-        logger.debug("Starting create order");
         currentSpan.addEvent("Starting create order");
+        logger.debug("Starting create order");
 
         try {
             String productName = order.getItem();

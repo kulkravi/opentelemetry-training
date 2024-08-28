@@ -36,24 +36,6 @@ public class ProductController {
   ServiceConfiguration productServiceConfiguration;
   private Tracer tracer;
 
-  private enum extractHeaders implements TextMapGetter<HttpServletRequest> {
-    INSTANCE;
-
-    @Override
-    public Iterable<String> keys(@Nonnull HttpServletRequest carrier) {
-      Enumeration<String> headerNames=carrier.getHeaderNames();
-      return Collections.list(headerNames);
-    }
-
-    @Nullable
-    // @Override
-    public String get(@Nullable HttpServletRequest carrier, @Nonnull String key) {
-      if (carrier == null) {
-        return null;
-      }
-      return carrier.getHeader(key);
-    }
-  }
   @Autowired
   ProductController(ServiceConfiguration productServiceConfiguration, OpenTelemetryService openTelemetryService) {
 
