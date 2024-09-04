@@ -8,7 +8,7 @@
         </encoder>
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>logs/product-service.log</file>
+        <file>logs/order-service.log</file>
         <encoder>
             <pattern>
                 logback: %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %kvp{DOUBLE}%n
@@ -20,4 +20,3 @@
         <appender-ref ref="FILE"/>
     </root>
 </configuration>
-

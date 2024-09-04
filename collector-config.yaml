@@ -14,11 +14,14 @@ receivers:
 exporters:
   zipkin:
     endpoint: "http://0.0.0.0:9413/api/v2/spans"
+
   debug:
     verbosity: detailed
+
   prometheus:
     endpoint: 0.0.0.0:9412
     send_timestamps: true
+
 processors:
   batch:
 
@@ -26,7 +29,6 @@ service:
   pipelines:
     traces:
       receivers: [otlp, zipkin]
-      # processors: [batch]
       exporters: [zipkin, debug]
 
     metrics:

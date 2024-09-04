@@ -23,3 +23,8 @@ dependencies {
     compileOnly("javax.servlet:javax.servlet-api:4.0.1");
 }
 
+tasks.named<JavaExec>("bootRun") {
+  environment("OTEL_SERVICE_NAME", "ProductService")
+  jvmArgs("-javaagent:opentelemetry-javaagent.jar")
+}
+
